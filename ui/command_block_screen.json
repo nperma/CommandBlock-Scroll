@@ -1,0 +1,285 @@
+{
+  "namespace": "command_block",
+
+  "maximized_scroll_content": {
+    "type": "panel",
+    "$scroll_text_size|default": ["100%",
+      4500],
+    "size": "$scroll_text_size",
+    "controls": [{
+      "scroll_command_text@command_block.command_block_text_edit_box": {
+        "anchor_from": "top_left",
+        "anchor_to": "top_left",
+        "size": ["100%",
+          "100%"],
+        "max_length": 32500,
+        "focus_enabled": false,
+        "$text_box_name": "command_block.scroll_view_text",
+        "$text_edit_box_content_binding_name": "#command_text_edit",
+        "$place_holder_text": "Enter your command input here",
+        "$cancel_button_id": "command_block.input_minimize",
+        "button_mappings": [{
+          "from_button_id": "button.menu_select",
+          "to_button_id": "button.menu_select",
+          "handle_select": false,
+          "handle_deselect": false,
+          "mapping_type": "pressed"
+        },
+          {
+            "from_button_id": "button.menu_ok",
+            "to_button_id": "button.menu_ok",
+            "handle_select": false,
+            "handle_deselect": false,
+            "mapping_type": "focused"
+          },
+          {
+            "from_button_id": "button.menu_cancel",
+            "to_button_id": "button.menu_cancel",
+            "handle_select": false,
+            "handle_deselect": false,
+            "mapping_type": "global"
+          }],
+        "bindings": [{
+          "binding_name": "#maximized_input_visible",
+          "binding_name_override": "#enabled"
+        }]
+      }
+    }]
+  },
+
+  "maximized_scroll_content_edit": {
+    "type": "panel",
+    "$scroll_text_size|default": ["100%",
+      4500],
+    "size": "$scroll_text_size",
+    "controls": [{
+      "scroll_command_text_edit@command_block.command_block_text_edit_box": {
+        "anchor_from": "top_left",
+        "anchor_to": "top_left",
+        "size": ["100%",
+          "100%"],
+        "max_length": 32500,
+        "$text_box_name": "command_block.command_text",
+        "$text_edit_box_content_binding_name": "#command_text_edit",
+        "$place_holder_text": "Enter your command input here",
+        "$cancel_button_id": "command_block.input_minimize",
+        "bindings": [{
+          "binding_name": "#maximized_input_visible",
+          "binding_name_override": "#enabled"
+        }]
+      }
+    }]
+  },
+
+  "command_block_screen_content": {
+    "modifications": [{
+      "array_name": "controls",
+      "operation": "remove",
+      "control_name": "maximized_command_block_text"
+    },
+      {
+        "array_name": "controls",
+        "operation": "insert_back",
+        "value": [{
+          "maximized_command_block_text@command_block.command_block_text_edit_box": {
+            "anchor_from": "top_middle",
+            "anchor_to": "top_middle",
+            "layer": 17,
+            "size": ["100% - 16px",
+              "100% - 31px"],
+            "offset": [0,
+              "23px"],
+            "max_length": 32500,
+            "$text_box_name": "command_block.command_text",
+            "$text_edit_box_content_binding_name": "#command_text_edit",
+            "$place_holder_text": "Enter your command input here",
+            "$cancel_button_id": "command_block.input_minimize",
+            "bindings": [{
+              "binding_name": "#maximized_input_visible"
+            },
+              {
+                "binding_type": "view",
+                "source_control_name": "scroll_toggle_state",
+                "source_property_name": "(#toggle_state)",
+                "target_property_name": "#scroll_on"
+              },
+              {
+                "binding_type": "view",
+                "source_property_name": "(#maximized_input_visible and (not #scroll_on))",
+                "target_property_name": "#visible"
+              }]
+          }
+        },
+          {
+            "scroll_toggle_holder": {
+              "type": "panel",
+              "layer": 18,
+              "anchor_from": "top_right",
+              "anchor_to": "top_right",
+              "offset": [-42,
+                4],
+              "size": [48,
+                14],
+              "controls": [{
+                "scroll_toggle@common_toggles.light_text_toggle": {
+                  "size": ["100%",
+                    "100%"],
+                  "$button_text": "Scroll",
+                  "$toggle_name": "scroll_toggle",
+                  "$toggle_view_binding_name": "scroll_toggle_state"
+                }
+              }],
+              "bindings": [{
+                "binding_name": "#maximized_input_visible",
+                "binding_name_override": "#visible"
+              }]
+            }
+          },
+          {
+            "write_toggle_holder": {
+              "type": "panel",
+              "layer": 18,
+              "anchor_from": "top_right",
+              "anchor_to": "top_right",
+              "offset": [-94,
+                4],
+              "size": [48,
+                14],
+              "controls": [{
+                "write_toggle@common_toggles.light_text_toggle": {
+                  "size": ["100%",
+                    "100%"],
+                  "$button_text": "Write",
+                  "$toggle_name": "write_toggle",
+                  "$toggle_view_binding_name": "write_toggle_state"
+                }
+              }],
+              "bindings": [{
+                "binding_name": "#maximized_input_visible"
+              },
+                {
+                  "binding_type": "view",
+                  "source_control_name": "scroll_toggle_state",
+                  "source_property_name": "(#toggle_state)",
+                  "target_property_name": "#scroll_on"
+                },
+                {
+                  "binding_type": "view",
+                  "source_property_name": "(#maximized_input_visible and #scroll_on)",
+                  "target_property_name": "#visible"
+                }]
+            }
+          },
+          {
+            "maximized_scroll_holder": {
+              "type": "panel",
+              "layer": 17,
+              "anchor_from": "top_middle",
+              "anchor_to": "top_middle",
+              "size": ["100% - 16px",
+                "100% - 31px"],
+              "offset": [0,
+                "23px"],
+              "controls": [{
+                "scroll_backdrop": {
+                  "type": "image",
+                  "texture": "textures/ui/White",
+                  "color": [0.37,
+                    0.37,
+                    0.37],
+                  "layer": 0
+                }
+              },
+                {
+                  "maximized_scroll_panel@common.scrolling_panel": {
+                    "layer": 1,
+                    "size": ["100%",
+                      "100%"],
+                    "$scrolling_pane_size": ["100%",
+                      "100%"],
+                    "$scrolling_content": "command_block.maximized_scroll_content",
+                    "$scroll_size": [5,
+                      "100% - 4px"],
+                    "$show_background": false
+                  }
+                }],
+              "bindings": [{
+                "binding_name": "#maximized_input_visible"
+              },
+                {
+                  "binding_type": "view",
+                  "source_control_name": "scroll_toggle_state",
+                  "source_property_name": "(#toggle_state)",
+                  "target_property_name": "#scroll_on"
+                },
+                {
+                  "binding_type": "view",
+                  "source_control_name": "write_toggle_state",
+                  "source_property_name": "(#toggle_state)",
+                  "target_property_name": "#write_on"
+                },
+                {
+                  "binding_type": "view",
+                  "source_property_name": "((#maximized_input_visible and #scroll_on) and (not #write_on))",
+                  "target_property_name": "#visible"
+                }]
+            }
+          },
+          {
+            "maximized_scroll_holder_edit": {
+              "type": "panel",
+              "layer": 17,
+              "anchor_from": "top_middle",
+              "anchor_to": "top_middle",
+              "size": ["100% - 16px",
+                "100% - 31px"],
+              "offset": [0,
+                "23px"],
+              "controls": [{
+                "scroll_backdrop_edit": {
+                  "type": "image",
+                  "texture": "textures/ui/White",
+                  "color": [0.37,
+                    0.37,
+                    0.37],
+                  "layer": 0
+                }
+              },
+                {
+                  "maximized_scroll_panel_edit@common.scrolling_panel": {
+                    "layer": 1,
+                    "size": ["100%",
+                      "100%"],
+                    "$scrolling_pane_size": ["100%",
+                      "100%"],
+                    "$scrolling_content": "command_block.maximized_scroll_content_edit",
+                    "$scroll_size": [5,
+                      "100% - 4px"],
+                    "$show_background": false
+                  }
+                }],
+              "bindings": [{
+                "binding_name": "#maximized_input_visible"
+              },
+                {
+                  "binding_type": "view",
+                  "source_control_name": "scroll_toggle_state",
+                  "source_property_name": "(#toggle_state)",
+                  "target_property_name": "#scroll_on"
+                },
+                {
+                  "binding_type": "view",
+                  "source_control_name": "write_toggle_state",
+                  "source_property_name": "(#toggle_state)",
+                  "target_property_name": "#write_on"
+                },
+                {
+                  "binding_type": "view",
+                  "source_property_name": "((#maximized_input_visible and #scroll_on) and #write_on)",
+                  "target_property_name": "#visible"
+                }]
+            }
+          }]
+      }]
+  }
+}
