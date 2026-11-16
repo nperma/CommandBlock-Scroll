@@ -1,0 +1,24 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Command Block Scroll Content",
+    "description": "just a test resource by Nperma",
+    "uuid": "9f065f4e-b069-4553-856b-c023cb7a50da",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 26, 0]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "086ade6d-22af-4d12-8786-4be69f366b97",
+      "version": [1, 0, 0],
+      "description": "BLABLABLUBLUBLU"
+    }
+  ],
+  "metadata": {
+    "authors": ["Nperma"],
+    "license": "MIT",
+    "url": "https://github.com/nperma/CommandBlock-Scroll/tree/main",
+    "generated_with": { "jaylydev_manifest_generator": ["1.0.0"] }
+  }
+}
